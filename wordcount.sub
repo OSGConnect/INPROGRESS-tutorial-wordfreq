@@ -2,7 +2,6 @@ executable =
 arguments = 
 
 transfer_input_files = 
-transfer_output_remaps  = 
 
 should_transfer_files   = Yes
 when_to_transfer_output = ON_EXIT
