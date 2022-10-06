@@ -1,3 +1,8 @@
+---
+ospool:
+    path: software_examples/python/tutorial-wordfreq/README.md
+---
+
 # Wordcount Tutorial for Submitting Multiple Jobs
 
 Imagine you have a collection of books, and you want to analyze how word
