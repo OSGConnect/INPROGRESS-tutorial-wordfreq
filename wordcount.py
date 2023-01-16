@@ -5,7 +5,7 @@ import sys
 import operator
 
 if len(sys.argv) != 2:
-    print 'Usage: %s DATA' % (os.path.basename(sys.argv[0]))
+    print('Usage: %s DATA' % (os.path.basename(sys.argv[0])))
     sys.exit(1)
 input_filename = sys.argv[1]
 
