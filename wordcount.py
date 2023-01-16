@@ -3,6 +3,7 @@
 import os
 import sys
 import operator
+import time
 
 if len(sys.argv) != 2:
     print('Usage: %s DATA' % (os.path.basename(sys.argv[0])))
@@ -20,6 +21,8 @@ for line in my_file:
         else:
             words[word] = 1
 my_file.close()
+
+time.sleep(15)
 
 input_stem = input_filename.split('.')[0]
 output_filename = "counts."+input_stem+".tsv"
