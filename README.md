@@ -6,7 +6,11 @@ ospool:
 # Wordcount Tutorial for Submitting Multiple Jobs
 
 Imagine you have a collection of books, and you want to analyze how word
-usage varies from book to book or author to author. 
+usage varies from book to book or author to author. The type of workflow covered in this tutorial can be used to describe workflows that take have different input files or parameters from job to job.
+
+To download the materials for this tutorial, type:
+
+	$ git clone https://github.com/OSGConnect/tutorial-wordfreq
 
 ## Analyzing One Book
 
