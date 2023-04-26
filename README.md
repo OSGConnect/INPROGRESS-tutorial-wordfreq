@@ -44,7 +44,7 @@ The command gets turned into the submit file `executable` and `arguments` option
 The input file for this job is the `Alice_in_Wonderland.txt` 
 text file. We include that in the following submit file option: 
 
-	transfer_input_files    = Alice_in_Wonderland.txt
+	transfer_input_files = Alice_in_Wonderland.txt
 
 There are other submit file options that control other aspects of the job, like 
 where to save error and logging information, and how many resources to request per 
@@ -83,7 +83,7 @@ After saving the submit file, submit the job:
 
 You can check the job's progress using `condor_q`, which will print out the status of 
 your jobs in the queue.  You can also use the command `condor_watch_q` to monitor the
-queue in real time (use the keybaord shortcut `Ctrl c` to exit). Once the job finishes, you 
+queue in real time (use the keybaord shortcut `Ctrl` `c` to exit). Once the job finishes, you 
 should see the same `counts.Alice_in_Wonderland.tsv` output when you enter `ls`.
 
 ## Analyzing Multiple Books
@@ -91,7 +91,7 @@ should see the same `counts.Alice_in_Wonderland.tsv` output when you enter `ls`.
 Now suppose you wanted to analyze multiple books - more than one at a time. 
 You could create a separate submit file for each book, and submit all of the
 files manually, but you'd have a lot of file lines to modify each time
-(in particular, the "arguments" and "transfer_input_files" line from the 
+(in particular, the "arguments" and "transfer_input_files" lines from the 
 previous submit file). 
 
 This would be overly verbose and tedious. HTCondor has options that make it easy to 
@@ -123,7 +123,7 @@ The `book.list` file now contains each of the `.txt` file names in the current d
 Next, we will make changes to our submit file so that it submits a job for 
 each book title in our list (seen in the `book.list` file). 
 
-Create a copy of our existing submit file, that we will use for this job submission. 
+Create a copy of our existing submit file, which we will use for this job submission. 
 
 	$ cp wordcount.sub wordcount-many.sub
 
@@ -141,9 +141,9 @@ This statement works like a `for` loop. For every item in the `book.list`
 file, HTCondor will create a job using this submit file, replacing the `book` 
 variable with the item from the list. 
 
-Therefore, every time we used the name of the book in our submit file (in the previous example, 
-everywhere you see "Alice_in_Wonderland.txt") should be 
-replaced with a variable. HTCondor's variable syntax looks like this: `$(variablename)`
+Therefore, everywhere we used the name of the book in our submit file should be
+replaced with the variable `book` (in the previous example, everywhere you entered
+"Alice_in_Wonderland.txt"). HTCondor's variable syntax looks like this: `$(variablename)`
 
 So the following lines in the submit file should be changed to use the variable `$(book)`: 
 
