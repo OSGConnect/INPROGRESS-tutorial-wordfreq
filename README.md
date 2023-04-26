@@ -57,20 +57,22 @@ This tutorial has a sample submit file (`wordcount.sub`) with most of these subm
 	arguments = 
 
 	transfer_input_files = 
-	
+
 	should_transfer_files   = Yes
 	when_to_transfer_output = ON_EXIT
 
-	output        = logs/job.$(Cluster).$(Process).out
-	error         = logs/job.$(Cluster).$(Process).error
 	log           = logs/job.$(Cluster).$(Process).log
+	error         = logs/job.$(Cluster).$(Process).error
+	output        = logs/job.$(Cluster).$(Process).out
 
+	+JobDurationCategory = "Medium"
 	requirements   = (OSGVO_OS_STRING == "RHEL 7")
+
 	request_cpus   = 1
 	request_memory = 512MB
 	request_disk   = 512MB
 
-	queue 1     
+	queue 1   
 
 Open (or create) this file with a terminal-based text editor (like `vi` or `nano`) and 
 add the executable, arguments, and input information described above. 
