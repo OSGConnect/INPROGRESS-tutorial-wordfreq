@@ -138,12 +138,12 @@ Following the syntax above, we modify the `queue` statement to fit our example:
 	queue book from book.list 
 
 This statement works like a `for` loop. For every item in the `book.list` 
-file, HTCondor will create a job using this submit file, replacing the `book` 
-variable with the item from the list. 
+file, HTCondor will create a job using this submit file, replacing the book 
+variable with the item from the list. HTCondor's variable syntax looks like this: `$(variablename)`
 
 Therefore, everywhere we used the name of the book in our submit file should be
-replaced with the variable `book` (in the previous example, everywhere you entered
-"Alice_in_Wonderland.txt"). HTCondor's variable syntax looks like this: `$(variablename)`
+replaced with the variable `$(book)` (in the previous example, everywhere you entered
+"Alice_in_Wonderland.txt"). 
 
 So the following lines in the submit file should be changed to use the variable `$(book)`: 
 
