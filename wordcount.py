@@ -1,34 +1,50 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import os
 import sys
 import operator
 import time
 
+start_time = time.perf_counter()
+
 if len(sys.argv) != 2:
-    print('Usage: %s DATA' % (os.path.basename(sys.argv[0])))
+    print('Error: invalid number of arguments', file=sys.stderr)
+    print('Usage: wordcount.py <textfile>')
     sys.exit(1)
+
 input_filename = sys.argv[1]
+input_basename = input_filename.split('.')[0]
+output_filename = "counts."+input_basename+".tsv"
 
-words = {}
+print('Analyzing {}'.format(input_filename))
 
-my_file = open(input_filename, 'r')
-for line in my_file:
-    line_words = line.split()
-    for word in line_words:
-        if word in words:
-            words[word] += 1
-        else:
-            words[word] = 1
-my_file.close()
+words_dict = {}
+with open(input_filename, 'r') as my_file:
+    for line in my_file:
+        line_words = line.split()
+        for word in line_words:
+            if word in words_dict:
+                words_dict[word] += 1
+            else:
+                words_dict[word] = 1
 
-time.sleep(15)
+sorted_words_list = sorted(words_dict.items(), key=operator.itemgetter(1), reverse=True)
 
-input_stem = input_filename.split('.')[0]
-output_filename = "counts."+input_stem+".tsv"
-sorted_words = sorted(words.items(), key=operator.itemgetter(1))
-my_file = open(output_filename, 'w')
-for word in sorted_words:
-    my_file.write('%s %8d \n' % (word[0], word[1]))
-my_file.close()
+output_lines = ['{}\t{}'.format(word, count) for word,count in sorted_words_list]
+output_text = '\n'.join(output_lines)
 
+with open(output_filename, 'w') as my_file:
+    my_file.write(output_text)
+
+stats = '''\
+|  Total words = {total}
+| Unique words = {uniq}'''.format(
+    total=sum([count for word,count in sorted_words_list]),
+    uniq=len(sorted_words_list)
+)
+
+print(stats)
+
+end_time = time.perf_counter()
+
+print('Elapsed time = {:.6f} secs'.format(end_time-start_time))

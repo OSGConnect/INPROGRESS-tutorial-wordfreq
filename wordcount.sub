@@ -7,14 +7,13 @@ should_transfer_files   = Yes
 when_to_transfer_output = ON_EXIT
 
 log           = logs/job.$(Cluster).$(Process).log
-error         = logs/job.$(Cluster).$(Process).error
+error         = logs/job.$(Cluster).$(Process).err
 output        = logs/job.$(Cluster).$(Process).out
 
 +JobDurationCategory = "Medium"
-requirements   = (OSGVO_OS_STRING == "RHEL 7")
 
 request_cpus   = 1
-request_memory = 512MB
-request_disk   = 512MB
+request_memory = 1GB
+request_disk   = 1GB
 
 queue 1
